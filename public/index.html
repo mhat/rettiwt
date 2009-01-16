@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>RettiwT - An experiment with Fluid, Blueprint &amp; Gears</title>
+  <link rel="stylesheet" href="stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="stylesheets/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+  <style type="text/css">
+    body       { background: #000; 
+
+    }
+    .container { background: #333; }
+    input      { background: #333; border: 2px solid #555; color: #999;}
+    select     { background: #333; border: 1px solid #555; color: #999;}
+    a          { color: #999; }
+    
+  </style>
+  <script type="text/javascript" src="javascripts/jquery.js"></script>
+  <script type="text/javascript">
+    jQuery(function(){
+      window.console.log("badge");
+      window.fluid.dockBadge = "10";
+
+      window.console.log("growl");
+      window.fluid.showGrowlNotification({
+          title:       "Bork Bork Bork", 
+          description: "I can haz Growl!", 
+          priority:    1, 
+          sticky: false,
+          identifier: "RettiwT"
+      });
+    });
+  </script>
+
+</head>
+<body>
+  <br/>
+  <div class="container" style="border: 5px solid #222">
+    
+    <div class="span-14" style="border-bottom:5px solid #aaa">
+      <select style="width:100%">
+        <optgroup label="TweetGroups">
+          <option default>Active</option>
+          <option>Boring</option>
+        </optgroup>
+        
+        <optgroup label="Filters">
+          <option>#bca4</option>
+          <option>#BIL</option>
+        </optgroup>
+        
+      </select>
+    </div>
+    
+    
+    <div class="span-14" style="border-bottom:5px solid #aaa;height:350px;overflow-y:scroll;overflow-x:hidden">
+      
+      <div class="container" style="background:#333; border-bottom: 1px dotted #111;">
+        <div class="span-2">
+          <img src="images/placeholder/user01.jpg">
+        </div>
+        <div class="span-11">
+          <strong style="color:#bbb">Tim O'Reilly</strong><span class="alt">
+            Ignite Leeds (UK) next Thursday. Schedule is up on <a href="">@Imran__Ali's</a>
+            blog at <a href="">http://twurl.nl/pjqgom</a> 12 minutes ago</span>
+        </div>
+        <div class="span-1 last">!!!</div>
+      </div>
+      
+      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
+        <div class="span-2">
+          <img src="images/placeholder/user02.jpg">
+        </div>
+        <div class="span-11">
+          <strong style="color:#bbb">presentationzen</strong><span class="alt">
+            Absolutely amazing! Who was the pilot of US Airways flight #1549 -- Batman? Wow! 
+            Double wow! <a href="">http://snipurl.com/a4w8r</a> about 2 hours ago from web</span>
+        </div>
+        <div class="span-1 last">!!!</div>
+      </div>
+      
+      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
+        <div class="span-2">
+          <img src="images/placeholder/user03.jpg">
+        </div>
+        <div class="span-11">
+          <strong style="color:#bbb">guykawasaki</strong><span class="alt">
+            Kevin Rose and Ashton Kutcher Collaborate for Web Show <a href="">http://tinyurl.com/84u77g</a>
+            about 2 hours ago</span>
+        </div>
+        <div class="span-1 last">!!!</div>
+      </div>
+
+
+      <div class="container" style="background:#333; border-bottom: 1px dotted #111;">
+        <div class="span-2">
+          <img src="images/placeholder/user01.jpg">
+        </div>
+        <div class="span-11">
+          <strong style="color:#bbb">Tim O'Reilly</strong><span class="alt">
+            Ignite Leeds (UK) next Thursday. Schedule is up on <a href="">@Imran__Ali's</a>
+            blog at <a href="">http://twurl.nl/pjqgom</a> 12 minutes ago</span>
+        </div>
+        <div class="span-1 last">!!!</div>
+      </div>
+      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
+        <div class="span-2">
+          <img src="images/placeholder/user02.jpg">
+        </div>
+        <div class="span-11">
+          <strong style="color:#bbb">presentationzen</strong><span class="alt">
+            Absolutely amazing! Who was the pilot of US Airways flight #1549 -- Batman? Wow! 
+            Double wow! <a href="">http://snipurl.com/a4w8r</a> about 2 hours ago from web</span>
+        </div>
+        <div class="span-1 last">!!!</div>
+      </div>
+      
+      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
+        <div class="span-2">
+          <img src="images/placeholder/user03.jpg">
+        </div>
+        <div class="span-11">
+          <strong style="color:#bbb">guykawasaki</strong><span class="alt">
+            Kevin Rose and Ashton Kutcher Collaborate for Web Show <a href="">http://tinyurl.com/84u77g</a>
+            about 2 hours ago</span>
+        </div>
+        <div class="span-1 last">!!!</div>
+      </div>
+      
+      <div class="container" style="background:#333; border-bottom: 1px dotted #111;">
+        <div class="span-2">
+          <img src="images/placeholder/user01.jpg">
+        </div>
+        <div class="span-11">
+          <strong style="color:#bbb">Tim O'Reilly</strong><span class="alt">
+            Ignite Leeds (UK) next Thursday. Schedule is up on <a href="">@Imran__Ali's</a>
+            blog at <a href="">http://twurl.nl/pjqgom</a> 12 minutes ago</span>
+        </div>
+        <div class="span-1 last">!!!</div>
+      </div>
+      
+      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
+        <div class="span-2">
+          <img src="images/placeholder/user02.jpg">
+        </div>
+        <div class="span-11">
+          <strong style="color:#bbb">presentationzen</strong><span class="alt">
+            Absolutely amazing! Who was the pilot of US Airways flight #1549 -- Batman? Wow! 
+            Double wow! <a href="">http://snipurl.com/a4w8r</a> about 2 hours ago from web</span>
+        </div>
+        <div class="span-1 last">!!!</div>
+      </div>
+      
+      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
+        <div class="span-2">
+          <img src="images/placeholder/user03.jpg">
+        </div>
+        <div class="span-11">
+          <strong style="color:#bbb">guykawasaki</strong><span class="alt">
+            Kevin Rose and Ashton Kutcher Collaborate for Web Show <a href="">http://tinyurl.com/84u77g</a>
+            about 2 hours ago</span>
+        </div>
+        <div class="span-1 last">!!!</div>
+      </div>
+      
+    </div>
+    
+    <div class="span-14">
+      <div class="container">
+        <div class="span-5">
+          <input type="text" style="width:100%">
+        </div>
+        <div class="span-1 last">
+          <input type="text" style="width:35px">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

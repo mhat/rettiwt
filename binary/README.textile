@@ -1,0 +1,22 @@
+
+h2. Instructions h2
+
+# Decompress RettiwT.tgz
+
+When you create Fluid app it happily bundles everything you need togther. I poked around a bit and
+noticed that the applications URI is stored in RettiwT.app/Contents/Resources/Config.plist. Since
+the URI can be file:// we can build and distribute this just like any other app -- You don't even
+have to install Fluid! 
+
+For development I did something a bit sneaky. The URI in Config.plist points to file://Application
+which resolves to RettiwT.app/Contents/Resources/Application. In development that is a symlink to
+../../../../public/ where the source code lives. In a actual release we would just copy public/ to
+Application/. 
+
+* I haven't looked at any style/packaging guides for OSX bundles, I'm not sure having Application 
+  in Resources exactly makes sense. I'll have to look more into that. 
+
+
+
+
+
