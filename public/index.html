@@ -16,17 +16,22 @@
     select     { background: #333; border: 1px solid #555; color: #999;}
     a          { color: #999; }
     
+    .item       { background: #333; border-bottom: 1px dotted #111; }
+    .selected   { background: #a00; }
+    
   </style>
   <script type="text/javascript" src="javascripts/jquery.js"></script>
+  <script type="text/javascript" src="javascripts/twitter.js"></script>
+  <script type="text/javascript" src="javascripts/mocks.js"></script>
   <script type="text/javascript">
     jQuery(function(){
       window.console.log("badge");
-      window.fluid.dockBadge = "10";
+      window.fluid.dockBadge = ""
 
       window.console.log("growl");
       window.fluid.showGrowlNotification({
           title:       "Bork Bork Bork", 
-          description: "I can haz Growl!", 
+          description: "RettiwT - Listening to your tweets! Far and wide!", 
           priority:    1, 
           sticky: false,
           identifier: "RettiwT"
@@ -55,112 +60,16 @@
     </div>
     
     
-    <div class="span-14" style="border-bottom:5px solid #aaa;height:350px;overflow-y:scroll;overflow-x:hidden">
+    <div class="span-14 list" style="border-bottom:5px solid #aaa;height:350px;overflow-y:scroll;overflow-x:hidden">
       
-      <div class="container" style="background:#333; border-bottom: 1px dotted #111;">
+      <!-- template for all tweet-items -->
+      <div class="container item" id="t" style="display:none">
         <div class="span-2">
-          <img src="images/placeholder/user01.jpg">
+          <img class="userpic" src="">
         </div>
         <div class="span-11">
-          <strong style="color:#bbb">Tim O'Reilly</strong><span class="alt">
-            Ignite Leeds (UK) next Thursday. Schedule is up on <a href="">@Imran__Ali's</a>
-            blog at <a href="">http://twurl.nl/pjqgom</a> 12 minutes ago</span>
-        </div>
-        <div class="span-1 last">!!!</div>
-      </div>
-      
-      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
-        <div class="span-2">
-          <img src="images/placeholder/user02.jpg">
-        </div>
-        <div class="span-11">
-          <strong style="color:#bbb">presentationzen</strong><span class="alt">
-            Absolutely amazing! Who was the pilot of US Airways flight #1549 -- Batman? Wow! 
-            Double wow! <a href="">http://snipurl.com/a4w8r</a> about 2 hours ago from web</span>
-        </div>
-        <div class="span-1 last">!!!</div>
-      </div>
-      
-      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
-        <div class="span-2">
-          <img src="images/placeholder/user03.jpg">
-        </div>
-        <div class="span-11">
-          <strong style="color:#bbb">guykawasaki</strong><span class="alt">
-            Kevin Rose and Ashton Kutcher Collaborate for Web Show <a href="">http://tinyurl.com/84u77g</a>
-            about 2 hours ago</span>
-        </div>
-        <div class="span-1 last">!!!</div>
-      </div>
-
-
-      <div class="container" style="background:#333; border-bottom: 1px dotted #111;">
-        <div class="span-2">
-          <img src="images/placeholder/user01.jpg">
-        </div>
-        <div class="span-11">
-          <strong style="color:#bbb">Tim O'Reilly</strong><span class="alt">
-            Ignite Leeds (UK) next Thursday. Schedule is up on <a href="">@Imran__Ali's</a>
-            blog at <a href="">http://twurl.nl/pjqgom</a> 12 minutes ago</span>
-        </div>
-        <div class="span-1 last">!!!</div>
-      </div>
-      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
-        <div class="span-2">
-          <img src="images/placeholder/user02.jpg">
-        </div>
-        <div class="span-11">
-          <strong style="color:#bbb">presentationzen</strong><span class="alt">
-            Absolutely amazing! Who was the pilot of US Airways flight #1549 -- Batman? Wow! 
-            Double wow! <a href="">http://snipurl.com/a4w8r</a> about 2 hours ago from web</span>
-        </div>
-        <div class="span-1 last">!!!</div>
-      </div>
-      
-      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
-        <div class="span-2">
-          <img src="images/placeholder/user03.jpg">
-        </div>
-        <div class="span-11">
-          <strong style="color:#bbb">guykawasaki</strong><span class="alt">
-            Kevin Rose and Ashton Kutcher Collaborate for Web Show <a href="">http://tinyurl.com/84u77g</a>
-            about 2 hours ago</span>
-        </div>
-        <div class="span-1 last">!!!</div>
-      </div>
-      
-      <div class="container" style="background:#333; border-bottom: 1px dotted #111;">
-        <div class="span-2">
-          <img src="images/placeholder/user01.jpg">
-        </div>
-        <div class="span-11">
-          <strong style="color:#bbb">Tim O'Reilly</strong><span class="alt">
-            Ignite Leeds (UK) next Thursday. Schedule is up on <a href="">@Imran__Ali's</a>
-            blog at <a href="">http://twurl.nl/pjqgom</a> 12 minutes ago</span>
-        </div>
-        <div class="span-1 last">!!!</div>
-      </div>
-      
-      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
-        <div class="span-2">
-          <img src="images/placeholder/user02.jpg">
-        </div>
-        <div class="span-11">
-          <strong style="color:#bbb">presentationzen</strong><span class="alt">
-            Absolutely amazing! Who was the pilot of US Airways flight #1549 -- Batman? Wow! 
-            Double wow! <a href="">http://snipurl.com/a4w8r</a> about 2 hours ago from web</span>
-        </div>
-        <div class="span-1 last">!!!</div>
-      </div>
-      
-      <div class="container" style="background:#333; border-bottom: 1px dotted #111">
-        <div class="span-2">
-          <img src="images/placeholder/user03.jpg">
-        </div>
-        <div class="span-11">
-          <strong style="color:#bbb">guykawasaki</strong><span class="alt">
-            Kevin Rose and Ashton Kutcher Collaborate for Web Show <a href="">http://tinyurl.com/84u77g</a>
-            about 2 hours ago</span>
+          <strong class="name" style="color:#bbb"></strong>
+          <span class="alt tweet"></span>
         </div>
         <div class="span-1 last">!!!</div>
       </div>
