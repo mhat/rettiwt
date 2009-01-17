@@ -22,22 +22,93 @@
     
   </style>
   <script type="text/javascript" src="javascripts/jquery.js"></script>
+  
+  <script type="text/javascript" src="javascripts/rettiwt/rtweetfactory.js"></script>
+  <script type="text/javascript" src="javascripts/rettiwt/rtweetlist.js"></script>
+  <script type="text/javascript" src="javascripts/rettiwt/rtweetrouter.js"></script>
+  
+  
+  
   <script type="text/javascript" src="javascripts/twitter.js"></script>
   <script type="text/javascript" src="javascripts/mocks.js"></script>
   <script type="text/javascript">
     jQuery(function(){
-      window.console.log("badge");
-      window.fluid.dockBadge = ""
-
-      window.console.log("growl");
-      window.fluid.showGrowlNotification({
-          title:       "Bork Bork Bork", 
-          description: "RettiwT - Listening to your tweets! Far and wide!", 
-          priority:    1, 
-          sticky: false,
-          identifier: "RettiwT"
-      });
+      // example: badge and growl
+      //
+      // window.console.log("badge");
+      // window.fluid.dockBadge = ""
+      // 
+      // window.console.log("growl");
+      // window.fluid.showGrowlNotification({
+      //     title:       "Bork Bork Bork", 
+      //     description: "RettiwT - Listening to your tweets! Far and wide!", 
+      //     priority:    1, 
+      //     sticky: false,
+      //     identifier: "RettiwT"
+      // });
+      
+      
+      // FIXME: S
+      RTweetRouter.accept(jQuery.map(mock_tweet_feed(), function(v,i){
+        return RTweetFactory.parse_json(v);
+      }).reverse());
+      
     });
+    
+    
+    // FIXME: This shouldn't be here!
+    
+    // SETUP SOME DEFAULT ROUTES ********************************************
+    DefaultRTL = RTweetList('DEFAULT');
+    RepliesRTL = RTweetList('REPLIES');
+    DirectsRTL = RTweetList('DIRECTS');
+
+    RTweetRouter
+      /* Simple Route, No Rules */
+      .append("TIMELINE", function(route,rtweet) {
+        DefaultRTL.add(rtweet);
+      })
+
+      /* Stupid Route, with a Rules example */
+      .append("REPLIES", function(route,rtweet) {
+        if (rtweet.tweet.text.match(/\@/)) {
+          RepliesRTL.add(rtweet);
+        }
+      });
+    // **********************************************************************
+    
+    
+    // FIXME: Remove This Testing Nonsense!
+    jQuery(document).bind('rettiwt.rtweet.create', function(evt,rtweet) {
+      console.log("Event: rettiwt.rtweet.create for id=" + rtweet.tweet.id);
+    });
+    
+    jQuery(document).bind('rettiwt.rtweetlist.add', function(evt,rt_list) {
+      console.log("Event: rettiwt.retweetlist.add for [" + rt_list.name() + "] with c=" + rt_list.length() );
+    });
+    
+    jQuery(document).bind('rettiwt.rtweetlist.add', function (evt, rtweetlist) {
+      rtweetlist.each(function(i,rtweet){
+        if (rtweet.state.rendered == true) return;
+        rtweet.state.rendered = true;
+        
+        var tweet_id = 't_' + rtweet.tweet.id;
+        var clone    = jQuery("#t").clone().attr('id',tweet_id).prependTo('.list');
+        
+        // add userpic
+        jQuery("#" + tweet_id + " .userpic").attr('src', rtweet.user.profile_image_url);
+        
+        // add username
+        jQuery("#" + tweet_id + " .name"   ).html(rtweet.user.screen_name);
+        
+        // add tweet text
+        jQuery("#" + tweet_id + " .tweet"  ).html(rtweet.tweet.text + '/'  + rtweet.tweet.created_at);
+        
+        clone.show();
+      });
+    });    
+    
+    
   </script>
 
 </head>
