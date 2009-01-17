@@ -22,20 +22,17 @@
 
 window.console.log("Loading twitter.js");
 
-var client        = {};
-client.unseen     = [];
-client.seen       = [];
-
-client.list       = function() {
+var rettiwt        = {};
+rettiwt.list       = function() {
   var max_tweet_count = 200;
   var tweets          = [];
   var tweet_table     = {};
   
   var parser          = function (twitter_tweet) {
-    var tweet   = {};
-    tweet.state = {};
-    tweet.user  = {};
-    tweet.tweet = {};
+    var tweet     = {};
+    tweet.state   = {};
+    tweet.user    = {};
+    tweet.tweet   = {};
     
     // any state we might want to keep about a tweet
     tweet.state.seen             = false;
@@ -64,23 +61,23 @@ client.list       = function() {
     
     append: function (twitter_tweets) {
       window.console.log(
-        "client.list.append: appending " + twitter_tweets.length + " tweets to " + tweets.length + ".");
+        "rettiwt.list.append: appending " + twitter_tweets.length + " tweets to " + tweets.length + ".");
       
       jQuery.each(twitter_tweets, function(i,twitter_tweet) {
         tweet = parser(twitter_tweet);
         
         if (tweet_table[tweet.tweet.id] == true) {
-          window.console.log("client.list.append: skipping seen tweet " + tweet.tweet.id);
+          window.console.log("rettiwt.list.append: skipping seen tweet " + tweet.tweet.id);
         }
         else {
-          window.console.log("client.list.append: memoizing " + tweet.tweet.id)
+          window.console.log("rettiwt.list.append: memoizing " + tweet.tweet.id)
           tweets.unshift(tweet);
           tweet_table[tweet.tweet.id] = true;
         }
       });
       
       // ensure that we're not memorizing more than 200 tweets
-      client.list.remove();
+      rettiwt.list.remove();
       
       // this feels a little leaky 
       jQuery('.list').trigger('update');
@@ -92,7 +89,7 @@ client.list       = function() {
           delete tweet_table[tweet.tweet.id];
         }));
         
-      return client.list.size();
+      return rettiwt.list.length();
     }
   }
 }();
@@ -108,8 +105,8 @@ function populate_events() {
 }
 
 jQuery(document).bind('update', function() {
-  window.console.log("event handler update on document: " + client.list + ", " + client.list.length);
-  client.list.each(function(i,tweet){
+  window.console.log("event handler update on document: " + rettiwt.list + ", " + rettiwt.list.length);
+  rettiwt.list.each(function(i,tweet){
     if (tweet.state.rendered == false) {
       tweet.state.rendered = true;
       var tweet_id = 't_' + parseInt(tweet.tweet.id);
