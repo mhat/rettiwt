@@ -13,18 +13,6 @@ var RTweetList = function (name) {
     'each'     : function (fn) { 
       for(var idx=0; idx < list.length; idx++){ fn(idx,list[idx]) }
     },
-    
-    // TODO: Needs more thought since the Router doesn't have direct access to
-    // the RTweetList's so it can't call flush.
-    'queue' : function ( tweets ) {
-        queue = jQuery.merge(queue, jQuery.isArray(tweets) ? tweets : [tweets]);
-    },
-    'flush' : function () {
-        this.add(queue);
-        queue = [];
-    },
-    
-    
     'add' : function ( tweets ) {
       // simpler if we just assume its always an array
       if (!jQuery.isArray(tweets)) tweets = [tweets];
