@@ -51,7 +51,7 @@
       // FIXME: S
       RTweetRouter.accept(jQuery.map(mock_tweet_feed(), function(v,i){
         return RTweetFactory.parse_json(v);
-      }).reverse());
+      }));
       
     });
     
@@ -59,22 +59,17 @@
     // FIXME: This shouldn't be here!
     
     // SETUP SOME DEFAULT ROUTES ********************************************
-    DefaultRTL = RTweetList('DEFAULT');
-    RepliesRTL = RTweetList('REPLIES');
-    DirectsRTL = RTweetList('DIRECTS');
-
     RTweetRouter
-      /* Simple Route, No Rules */
-      .append("TIMELINE", function(route,rtweet) {
-        DefaultRTL.add(rtweet);
+      .append("DEFAULT", RTweetList('DEFAULT'), function(rtweet) {
+        return rtweet
       })
-
-      /* Stupid Route, with a Rules example */
-      .append("REPLIES", function(route,rtweet) {
-        if (rtweet.tweet.text.match(/\@/)) {
-          RepliesRTL.add(rtweet);
+      .append("REPLIES", RTweetList('REPLIES'), function(rtweet) {
+        if (rtweet.tweet.in_reply_to_user_id) {
+          return rtweet
         }
       });
+    
+    
     // **********************************************************************
     
     
