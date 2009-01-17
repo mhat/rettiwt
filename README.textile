@@ -1,5 +1,5 @@
 
-h2. RettiwT h2
+h2. RettiwT
 
 An experiment building a native-ish Twitter application using Fluid, Blueprint, jQuery and Google-Gears. 
 
