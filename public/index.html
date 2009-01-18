@@ -26,11 +26,11 @@
   <script type="text/javascript" src="javascripts/rettiwt/rtweetfactory.js"></script>
   <script type="text/javascript" src="javascripts/rettiwt/rtweetlist.js"></script>
   <script type="text/javascript" src="javascripts/rettiwt/rtweetrouter.js"></script>
+  <script type="text/javascript" src="javascripts/rettiwt/tpoller.js"></script>
   
   
   
   <script type="text/javascript" src="javascripts/twitter.js"></script>
-  <script type="text/javascript" src="javascripts/mocks.js"></script>
   <script type="text/javascript">
     jQuery(function(){
       // example: badge and growl
@@ -46,13 +46,6 @@
       //     sticky: false,
       //     identifier: "RettiwT"
       // });
-      
-      
-      // FIXME: S
-      RTweetRouter.accept(jQuery.map(mock_tweet_feed(), function(v,i){
-        return RTweetFactory.parse_json(v);
-      }));
-      
     });
     
     
