@@ -41,7 +41,7 @@ var RTweetList = function (name) {
         jQuery(document).trigger('rettiwt.rtweetlist.add', [this]);
     }, 
     
-    // TODO: Need to have a method to ensure the list stays below 500.
+    // TODO: Need to have a method to ensure the list stays below 200.
   };
 };
 
