@@ -27,6 +27,7 @@
   <script type="text/javascript" src="javascripts/rettiwt/rtweetlist.js"></script>
   <script type="text/javascript" src="javascripts/rettiwt/rtweetrouter.js"></script>
   <script type="text/javascript" src="javascripts/rettiwt/tpoller.js"></script>
+  <script type="text/javascript" src="javascripts/rettiwt/rcontroller.js"></script>
   
   
   
@@ -51,51 +52,12 @@
     
     // FIXME: This shouldn't be here!
     
-    // SETUP SOME DEFAULT ROUTES ********************************************
-    RTweetRouter
-      .append("DEFAULT", RTweetList('DEFAULT'), function(rtweet) {
-        return rtweet
-      })
-      .append("REPLIES", RTweetList('REPLIES'), function(rtweet) {
-        if (rtweet.tweet.in_reply_to_user_id) {
-          return rtweet
-        }
-      });
-    
-    
-    // **********************************************************************
     
     
     // FIXME: Remove This Testing Nonsense!
-    jQuery(document).bind('rettiwt.rtweet.create', function(evt,rtweet) {
-      console.log("Event: rettiwt.rtweet.create for id=" + rtweet.tweet.id);
-    });
-    
     jQuery(document).bind('rettiwt.rtweetlist.add', function(evt,rt_list) {
       console.log("Event: rettiwt.retweetlist.add for [" + rt_list.name() + "] with c=" + rt_list.length() );
     });
-    
-    jQuery(document).bind('rettiwt.rtweetlist.add', function (evt, rtweetlist) {
-      rtweetlist.each(function(i,rtweet){
-        if (rtweet.state.rendered == true) return;
-        rtweet.state.rendered = true;
-        
-        var tweet_id = 't_' + rtweet.tweet.id;
-        var clone    = jQuery("#t").clone().attr('id',tweet_id).prependTo('.list');
-        
-        // add userpic
-        jQuery("#" + tweet_id + " .userpic").attr('src', rtweet.user.profile_image_url);
-        
-        // add username
-        jQuery("#" + tweet_id + " .name"   ).html(rtweet.user.screen_name);
-        
-        // add tweet text
-        jQuery("#" + tweet_id + " .tweet"  ).html(rtweet.tweet.text + '/'  + rtweet.tweet.created_at);
-        
-        clone.show();
-      });
-    });    
-    
     
   </script>
 
