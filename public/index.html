@@ -8,17 +8,24 @@
   <link rel="stylesheet" href="stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
   <link rel="stylesheet" href="stylesheets/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
   <style type="text/css">
-    body       { background: #000; 
-
-    }
-    .container { background: #333; }
+    body       { background: #000; }
     input      { background: #333; border: 2px solid #555; color: #999;}
     select     { background: #333; border: 1px solid #555; color: #999;}
     a          { color: #999; }
     
-    .item       { background: #333; border-bottom: 1px dotted #111; }
-    .selected   { background: #a00; }
-    .seen       { background: #00a; }
+    .r-master-container   { border:       5px solid #222; background: #333; }
+    .r-toolbar-0          { border-bottom:5px solid #aaa }
+    .r-toolbar-tweet      { }
+    .r-select-list        { width: 100%;}
+    
+    .r-tweets-container   { border-bottom:5px solid #aaa; height:350px; overflow-y:scroll; overflow-x:hidden }
+    .r-tweet              { background: #333; border-bottom: 1px dotted #111; height:75px; }
+    .r-tweet-template     { display: none; }
+    .r-tweet-name         { color: #aaa; font-weight: bold;   }
+    .r-tweet-text         { color: #999; font-weight: normal; }
+    .r-tweet-text-warn    { color: #ffd700; }
+    .r-tweet-text-long    { color: #aa0000; font-weight: bold;}
+    .r-tweet-picture      { padding-top:5px; width: 50px; height: 50px;}
     
   </style>
   <script type="text/javascript" src="javascripts/jquery.js"></script>
@@ -28,72 +35,50 @@
   <script type="text/javascript" src="javascripts/rettiwt/rtweetrouter.js"></script>
   <script type="text/javascript" src="javascripts/rettiwt/tpoller.js"></script>
   <script type="text/javascript" src="javascripts/rettiwt/rcontroller.js"></script>
-  
-  
-  
-  <script type="text/javascript" src="javascripts/twitter.js"></script>
   <script type="text/javascript">
-    jQuery(function(){
-      // example: badge and growl
-      //
-      // window.console.log("badge");
-      // window.fluid.dockBadge = ""
-      // 
-      // window.console.log("growl");
-      // window.fluid.showGrowlNotification({
-      //     title:       "Bork Bork Bork", 
-      //     description: "RettiwT - Listening to your tweets! Far and wide!", 
-      //     priority:    1, 
-      //     sticky: false,
-      //     identifier: "RettiwT"
-      // });
+  jQuery(function() {
+    
+    // FIXME: shock hack just to see what it wolud be like to have colors
+    $("#yyy").keyup(function(evt){  
+      var sz = evt.target.value.length;
+      if      (sz > 120) $("#xxx").val(sz).removeClass('r-tweet-text-warn').addClass('r-tweet-text-long');
+      else if (sz > 100) $("#xxx").val(sz).removeClass('r-tweet-text-long').addClass('r-tweet-text-warn');
+      else               $("#xxx").val(sz).removeClass('r-tweet-text-warn r-tweet-text-long');
     });
+    
+  });
   </script>
-
 </head>
 <body>
   <br/>
-  <div class="container" style="border: 5px solid #222">
+  <div class="container r-master-container">
     
-    <div class="span-14" style="border-bottom:5px solid #aaa">
-      <select style="width:100%">
-        <optgroup label="TweetGroups">
-          <option default>Active</option>
-          <option>Boring</option>
-        </optgroup>
-        
-        <optgroup label="Filters">
-          <option>#bca4</option>
-          <option>#BIL</option>
-        </optgroup>
-        
-      </select>
+    <div class="span-14 r-toolbar-0">
+      <select class="r-select-list"></select>
     </div>
     
-    
-    <div class="span-14 list" style="border-bottom:5px solid #aaa;height:350px;overflow-y:scroll;overflow-x:hidden">
+    <div class="span-14 r-tweets-container">
       
-      <!-- template for all tweet-items -->
-      <div class="container item" id="t" style="display:none">
-        <div class="span-2">
-          <img class="userpic" src="">
+      <div class="container r-tweet r-tweet-template">
+        <div class="span-2" >
+          <img class="r-tweet-picture" src="">
         </div>
         <div class="span-11">
-          <strong class="name" style="color:#bbb"></strong>
-          <span class="alt tweet"></span>
+          <span class="r-tweet-name"></span>
+          <span class="alt r-tweet-text"></span>
         </div>
-        <div class="span-1 last">!!!</div>
+        <div class="span-1 last r-tweet-misc">!!!</div>
       </div>
       
     </div>
     
-    <div class="span-14">
+    <div class="span-14 r-toolbar-tweet">
       <div class="container">
-        <div class="span-5">
-          <input type="text" style="width:100%">
+        <div class="span-12">
+          <input id="yyy" type="text" style="width:100%">
         </div>
-        <div class="span-1 last">
-          <input type="text" style="width:35px">
+        <div class="span-2 last">
+          <input id="xxx" type="text" style="width:49px">
         </div>
       </div>
     </div>

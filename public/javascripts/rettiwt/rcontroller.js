@@ -1,8 +1,8 @@
 var RController = function() {
   
   var rtlmap   = {
-    'DEFAULT'  : { 'rtl': RTweetList('DEFAULT'), 'sel': '.list', 'state': {'rendered':{} } },
-    'REPLIES'  : { 'rtl': RTweetList('REPLIES'), 'sel': '.list', 'state': {'rendered':{} } }
+    'DEFAULT'  : { 'rtl': RTweetList('DEFAULT'), 'sel': '.r-tweets-container', 'state': {'rendered':{} } },
+    'REPLIES'  : { 'rtl': RTweetList('REPLIES'), 'sel': '.r-tweets-container', 'state': {'rendered':{} } }
   }
   
   var z  = {
@@ -15,13 +15,28 @@ var RController = function() {
         else
           state.rendered[rtweet.tweet.id] = true
         
-        var tweet_id = 't_' + rtweet.tweet.id;
-        var clone    = jQuery("#t").clone().attr('id',tweet_id).prependTo(selector);
-        jQuery("#" + tweet_id + " .userpic").attr('src', rtweet.user.profile_image_url);
-        jQuery("#" + tweet_id + " .name"   ).html(rtweet.user.screen_name);
-        jQuery("#" + tweet_id + " .tweet"  ).html(rtweet.tweet.text + '/'  + rtweet.tweet.created_at);
+        // FIXME: I really should do something so that I don't generate growl
+        // spam on startup.
+        window.fluid.showGrowlNotification({
+          name:         "Tweet Arrived",
+          description:  rtweet.tweet.text,
+          priority:     0, 
+          sticky:       false
+        });
         
-        clone.show();
+        // create the tweet, yo!
+        var tweet_id = 't_' + rtweet.tweet.id;
+        var tweet    = jQuery(".r-tweet-template")
+          .clone()
+          .attr('id',tweet_id)
+          .removeClass('r-tweet-template')
+          .prependTo(selector);
+        
+        tweet.find(".r-tweet-picture").attr('src', rtweet.user.profile_image_url);
+        tweet.find(".r-tweet-name").html(rtweet.user.screen_name);
+        tweet.find(".r-tweet-text").html(rtweet.tweet.text + '/'  + rtweet.tweet.created_at);
+        
+        tweet.fadeIn();
       });
     }
   };
