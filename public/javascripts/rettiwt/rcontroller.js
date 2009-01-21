@@ -30,6 +30,7 @@ var RController = function() {
           .clone()
           .attr('id',tweet_id)
           .removeClass('r-tweet-template')
+          .addClass('r-tweet-new')
           .prependTo(selector);
         
         tweet.find(".r-tweet-picture").attr('src', rtweet.user.profile_image_url);
@@ -59,8 +60,16 @@ var RController = function() {
         });
         
       window.console.log("RController#initalize: Tweetlist Binder!");
-      
       jQuery(document).bind('rettiwt.rtweetlist.add', z.on_rtweetlist_update);
+      
+      
+      window.console.log("RController#initalize: Adding Event Handlers");
+      jQuery(".r-tweet").live('click', function(evt){
+        $(".r-tweet-focus").removeClass('r-tweet-focus');
+        $(evt.target).closest(".r-tweet")
+          .removeClass('r-tweet-new').addClass('r-tweet-focus');
+      });
+      
       
       window.console.log("RController#initalize: Done");
     }
