@@ -3,4 +3,4 @@ h2. RettiwT
 
 An experiment building a native-ish Twitter application using Fluid, Blueprint, jQuery and Google-Gears. 
 
-Curious
+Locally
