@@ -44,8 +44,7 @@ var RController = function() {
   };
   
   return {
-    
-    'initalize' : function () {
+    'initialize': function () { 
       
       window.console.log("RController#initalize: Routes");
       window.console.log(RTweetRouter);
