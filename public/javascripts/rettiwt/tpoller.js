@@ -19,20 +19,16 @@ var TwitterPoller = function(){
     }
     else {
       waiting = true;
-      window.console.log("Active polling...");
       jQuery.getJSON(
         'http://twitter.com/statuses/friends_timeline.json', 
         function(data,textStatus){
-          
-          
-          RTweetRouter.accept(jQuery.map(data, function(v,i){
-            return RTweetFactory.parse_json(v);
-          }));
-          
-          
-          // mutex go-bye-bye
           waiting = false;
           
+          if (textStatus == 'success') {
+            RTweetRouter.accept(jQuery.map(data, function(v,i){
+              return RTweetFactory.parse_json(v);
+            }));
+          }
         }
       );
     

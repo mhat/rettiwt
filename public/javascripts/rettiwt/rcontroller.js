@@ -21,7 +21,8 @@ var RController = function() {
           name:         "Tweet Arrived",
           description:  rtweet.tweet.text,
           priority:     0, 
-          sticky:       false
+          sticky:       false,
+          icon:         rtweet.user.profile_image_url
         });
         
         // create the tweet, yo!
@@ -70,6 +71,23 @@ var RController = function() {
           .removeClass('r-tweet-new').addClass('r-tweet-focus');
       });
       
+      jQuery(document).keypress(function(evt) {
+        var f = $(".r-tweet-focus");
+        if (f.size() == 0) f = $(".r-tweet-new:visible:last,.r-tweet:visible:last");
+        if (f.size() == 0) return;
+        f = $(f[0]);
+        
+        if      (evt.which == 106 || evt.which == 63233) {
+          evt.preventDefault();
+          f.next('div').click();
+        }
+        else if (evt.which == 107 || evt.which == 63232) {
+          evt.preventDefault();
+          f.prev('div').click();
+        }
+        
+        jQuery('.r-tweets-container').scrollTo($('.r-tweet-focus'));
+      });
       
       window.console.log("RController#initalize: Done");
     }
