@@ -1,0 +1,31 @@
+** RController has one method:
+  initalize() -
+    0. Create some Routes 
+    1. Routes Connect a RTweet to a a RTweetList
+    2. Bind an Event-Handler to a custom Event triggered when Events are 
+       Added to a RTweetList
+    3. Bind an Event-Handler to the click Event using LIVE
+    4. Bind an Event-Handler to the onkeypress Event.
+
+** RTweetRouter has two methods:
+  - append() which takes a Name, RTweetList and a Function that will be
+    be called for each RTweet passed to RTR's other method, accept().
+  - accept() is called with some number of RTweets, it will iterate over
+    the RTweets routing each RTweet to some RTL. An RTweet may be routed
+    to more than one RTL. 
+  
+** RTweetList has one method: 
+  - add() which takes an array of RTweets that should be added to the 
+    this RTL. The RTL maintains a table of previously seen tweets. I
+    realize now this is retarded and we only need to store an ID ...
+    
+    an event: rettiwt.rtweetlist.add is triggred if there > 0 tweets
+    are added. 
+    
+** TwitterPoller has one method:
+  - start() which simply starts polling Twitter's /friends_timeline. It
+    *should* have error handling, etc. For each Twitter-Tweet, RTweetFactor
+    .parse_json() is called, creating an RTweet. Those are passed to RTR
+    via accept() which attempts to distribute them. 
+    
+  
