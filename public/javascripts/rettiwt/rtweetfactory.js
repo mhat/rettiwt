@@ -41,6 +41,25 @@ var RTweetFactory = function(){
       rt.tweet.favorited        = twitter_tweet_json.favorited;
       rt.tweet.created_at       = new Date(Date.parse(twitter_tweet_json.created_at));
       
+      rt.tweet.in_reply_to_user_id   = parseInt(twitter_tweet_json.in_reply_to_user_id);
+      rt.tweet.in_reply_to_status_id = parseInt(twitter_tweet_json.in_reply_to_status_id);
+      
+      // determin the tweet type: tweet types are applied as I check for more
+      // and more specific identifiers in the order:  tweet, retweet, replyto
+      // and finally direct.
+      rt.type = 'tweet'
+      
+      // type: re-tweet
+      if (rt.tweet.text.match(^(\s*?)RT))  rt.type = 'retweet'
+      
+      // type: reply-to
+      if (rt.tweet.in_reply_to_user_id || 
+          rt.tweet.in_reply_to_status_id ) rt.type = 'replyto'
+      
+      // type: direct
+      // FIXME: i don't have an example of the json for a DM yet
+      
+      
       // get all eventy with the created RTweet
       jQuery(document).trigger('rettiwt.rtweet.create', [rt]);
       
