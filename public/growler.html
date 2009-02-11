@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>RettiwT - An experiment with Fluid, Blueprint &amp; Gears</title>
+  <link rel="stylesheet" href="stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="stylesheets/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+  <style type="text/css">
+    body       { background: #000; }
+    .title       { color: #555; font-size:3em; text-align:center;}
+  </style>
+  <script type="text/javascript" src="javascripts/jquery.js"></script>
+  <script type="text/javascript" src="javascripts/jquery.scroll.js"></script>
+  
+  <script type="text/javascript" src="javascripts/rettiwt/rtweetfactory.js"></script>
+  <script type="text/javascript" src="javascripts/rettiwt/rtweetlist.js"></script>
+  <script type="text/javascript" src="javascripts/rettiwt/rtweetrouter.js"></script>
+  <script type="text/javascript" src="javascripts/rettiwt/tpoller.js"></script>
+  <script type="text/javascript" src="javascripts/rettiwt/rgrowler.js"></script>
+  
+  <script type="text/javascript">
+    jQuery(function(){
+      window.resizeTo(400,100);
+      RGrowler.initialize();
+      TwitterPoller.start();
+    });
+  </script>
+</head>
+<body>
+  <div class="title">Apple-H to Hide</div>
+</body>
+</html>
