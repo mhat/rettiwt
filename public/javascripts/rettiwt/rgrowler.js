@@ -7,6 +7,7 @@ var RGrowler = function() {
   var z  = {
     'on_rtweetlist_update' : function (evt, rtweetlist) {
       var state = rtlmap[rtweetlist.name()].state;
+      var count = 0;
       
       rtweetlist.each(function(i,rtweet){
         // do not re-growl 
@@ -14,6 +15,7 @@ var RGrowler = function() {
         else
           state.rendered[rtweet.tweet.id] = true
         
+        count += 1;
         window.fluid.showGrowlNotification({
           name:         "Tweet Arrived",
           title:        rtweet.user.screen_name,
@@ -23,6 +25,9 @@ var RGrowler = function() {
           icon:         rtweet.user.profile_image_url
         });
       });
+      
+      if (count != 0) window.fluid.playSoundNamed("Submarine");
+      
     }
   };
   
